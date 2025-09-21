@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PataSpare – Full App Prototype</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #1e3a5f;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons a {
+            background-color: #4CAF50;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        section {
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1e3a5f;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        form label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .quote-card, .request-item, .history-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #1e3a5f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav, .auth-buttons {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="page">
+        <header>
+            <div class="container header-content">
+                <div class="logo">PataSpare</div>
+                <nav>
+                    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                    <a href="#" onclick="showPage('request')">New Request</a>
+                    <a href="#" onclick="showPage('history')">History</a>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="container">
+            <h2 class="section-title">Welcome back, John!</h2>
+            <a href="#" onclick="showPage('request')" class="btn">Request a Part</a>
+            <a href="#" onclick="showPage('history')" class="btn">View History</a>
+            <h3 class="section-title">Recent Requests</h3>
+            <div class="request-item">
+                <h4>Toyota Fielder – Radiator Fan</h4>
+                <p>2 quotes received</p>
+                <a href="#" onclick="showPage('quotes')" class="btn">View Quotes</a>
+            </div>
+            <div class="request-item">
+                <h4>Nissan Note – Headlamp</h4>
+                <p>1 quote received</p>
+                <a href="#" onclick="showPage('quotes')" class="btn">View Quotes</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Request Form -->
+    <div id="request" class="page hidden">
+        <header>
+            <div class="container header-content">
+                <div class="logo">PataSpare</div>
+                <nav>
+                    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                    <a href="#" onclick="showPage('history')">History</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="container">
+            <h2 class="section-title">Request a Spare Part</h2>
+            <form>
+                <label>Car Make</label>
+                <input type="text" placeholder="e.g. Toyota">
+
+                <label>Model</label>
+                <input type="text" placeholder="e.g. Fielder">
+
+                <label>Year</label>
+                <input type="number" placeholder="e.g. 2010">
+
+                <label>Part Needed</label>
+                <input type="text" placeholder="e.g. Radiator Fan">
+
+                <label>Condition</label>
+                <select>
+                    <option>New</option>
+                    <option>Used</option>
+                </select>
+
+                <label>Location</label>
+                <input type="text" placeholder="e.g. Nairobi">
+
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- Quotes -->
+    <div id="quotes" class="page hidden">
+        <header>
+            <div class="container header-content">
+                <div class="logo">PataSpare</div>
+                <nav>
+                    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                    <a href="#" onclick="showPage('request')">New Request</a>
+                    <a href="#" onclick="showPage('history')">History</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="container">
+            <h2 class="section-title">Quotes for Radiator Fan – Toyota Fielder</h2>
+            <div class="quote-card">
+                <h3>AutoSpares Kenya</h3>
+                <p>Price: KES 2,500</p>
+                <p>Condition: Used</p>
+                <p>Location: Nairobi</p>
+                <a href="tel:0712345678" class="btn">Call Now</a>
+            </div>
+            <div class="quote-card">
+                <h3>City Motors</h3>
+                <p>Price: KES 3,200</p>
+                <p>Condition: New</p>
+                <p>Location: Mombasa</p>
+                <a href="tel:0722345678" class="btn">Call Now</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- History -->
+    <div id="history" class="page hidden">
+        <header>
+            <div class="container header-content">
+                <div class="logo">PataSpare</div>
+                <nav>
+                    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                    <a href="#" onclick="showPage('request')">New Request</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="container">
+            <h2 class="section-title">Your History</h2>
+            <h3>Requests</h3>
+            <div class="history-item">
+                <h4>Toyota Fielder – Radiator Fan</h4>
+                <p>2 quotes – Oct 12</p>
+            </div>
+            <div class="history-item">
+                <h4>Nissan Note – Headlamp</h4>
+                <p>1 quote – Oct 5</p>
+            </div>
+            <h3>Quotes</h3>
+            <div class="history-item">
+                <h4>AutoSpares Kenya – Radiator Fan</h4>
+                <p>KES 2,500 – Used</p>
+            </div>
+            <div class="history-item">
+                <h4>City Motors – Headlamp</h4>
+                <p>KES 3,200 – New</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Dealer Portal -->
+    <div id="dealer-portal" class="page hidden">
+        <header>
+            <div class="container header-content">
+                <div class="logo">PataSpare</div>
+                <nav>
+                    <a href="#" onclick="showPage('dealer-portal')">Dashboard</a>
+                    <a href="#">Profile</a>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="container">
+            <h2 class="section-title">New Requests</h2>
+            <div class="request-item">
+                <h3>Toyota Fielder – Radiator Fan</h3>
+                <p>Location: Nairobi</p>
+                <p>Posted: 10 mins ago</p>
+                <a href="#" class="btn">Submit Quote</a>
+            </div>
+            <div class="request-item">
+                <h3>Nissan Note – Headlamp</h3>
+                <p>Location: Mombasa</p>
+                <p>Posted: 1 hour ago</p>
+                <a href="#" class="btn">Submit Quote</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Coming Soon -->
+    <div id="coming-soon" class="page hidden">
+        <header>
+            <div class="container header-content">
+                <div class="logo">PataSpare</div>
+                <nav>
+                    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                    <a href="#" onclick="showPage('coming-soon')">Premium</a>
+                </nav>
+            </div>
+        </header>
+
+        <section class="container">
+            <h2 class="section-title">PataSpare Premium – Coming Soon</h2>
+            <div class="request-item">
+                <h3>Minor Service Package</h3>
+                <p>Oil change, brake pads, filters, fluids</p>
+            </div>
+            <div class="request-item">
+                <h3>Major Service Package</h3>
+                <p>Everything in Minor + suspension, clutch, cooling</p>
+            </div>
+            <div class="request-item">
+                <h3>Partnerships</h3>
+                <p>Insurance, certified garages, repainting</p>
+            </div>
+            <form>
+                <label>Email</label>
+                <input type="email" placeholder="you@example.com">
+                <button type="submit" class="btn">Notify Me</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PataSpare. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
